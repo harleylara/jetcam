@@ -27,12 +27,23 @@ Below we show some usage examples.  You can find more in the [notebooks](noteboo
 
 ### Create CSI camera
 
-Call ``CSICamera`` to use a compatible CSI camera.  ``capture_width``, ``capture_height``, and ``capture_fps`` will control the capture shape and rate that images are aquired.  ``width`` and ``height`` control the final output shape of the image as returned by the ``read`` function.
+Call ``CSICamera`` to use a compatible CSI camera.  ``capture_width``, ``capture_height``, and ``capture_fps`` will control the capture shape and rate that images are aquired.  ``width`` and ``height`` control the final output shape of the image as returned by the ``read`` function. ``flip_method`` can rotate/flip the image. This is useful when the mounting of the camera is of a different orientation than the default.
+
+```
+flip_method:    (0): none             - Identity (no rotation)
+                (1): counterclockwise - Rotate counter-clockwise 90 degrees
+                (2): rotate-180       - Rotate 180 degrees
+                (3): clockwise        - Rotate clockwise degrees
+                (4): horizontal-flip  - Flip horizontally
+                (5): upper-right-diagonal - Flip across uppright/lower left diagonal
+                (6): vertical-flip    - Flip vertically
+                (7): upper-left-diagonal - Flip across uppleft/lower right diagonal
+```
 
 ```python
 from jetcam.csi_camera import CSICamera
 
-camera = CSICamera(width=224, height=224, capture_width=1080, capture_height=720, capture_fps=30)
+camera = CSICamera(width=224, height=224, capture_width=1080, capture_height=720, capture_fps=30, flip_method=0)
 ```
 
 ### Create USB camera
@@ -80,27 +91,28 @@ camera.observe(callback, names='value')
 
 These cameras work with the [``CSICamera``](jetcam/csi_camera.py) class.  Try them out by following the example [notebook](notebooks/csi_camera/csi_camera.ipynb).
 
-| Model | Infared | FOV | Resolution | Cost | 
-|:-------|:-----:|:---:|:---:|:----:|
-| [Raspberry Pi Camera V2](https://www.amazon.com/Raspberry-Pi-Camera-Module-Megapixel/dp/B01ER2SKFS/ref=sr_1_3?keywords=raspberry+pi+v2+camera&qid=1554831689&s=electronics&sr=1-3) |  | 62.2 | 3280x2464 | $25 | 
-| [Raspberry Pi Camera V2 (NOIR)](https://www.amazon.com/RPi-Camera-V2-Official-Raspberry/dp/B07P7GBJTK/ref=sr_1_1_sspa?keywords=raspberry+pi+v2+camera&qid=1554831658&s=electronics&sr=1-1-spons&psc=1) | x | 62.2 |  3280x2464 | $31 | 
-| [Arducam IMX219 CS lens mount](https://www.robotshop.com/en/arducam-8mp-sony-imx219-camera-module-cs-lens-2718-raspberry-pi.html?gclid=EAIaIQobChMIzMKg38bD4QIVrR6tBh3UoAdjEAYYCSABEgLg-_D_BwE) |   |  |  3280x2464 | $65 | 
-| [Arducam IMX219 M12 lens mount](https://www.robotshop.com/en/arducam-8mp-sony-imx219-camera-module-m12-lens-ls40136-raspberry-pi.html) |   |  |  3280x2464 | $60 |
-| [LI-IMX219-MIPI-FF-NANO](https://leopardimaging.com/product/li-imx219-mipi-ff-nano/) |   |   |  3280x2464 | $29 |
-| [WaveShare IMX219-77](https://www.waveshare.com/IMX219-77-Camera.htm) |   | 77 |  3280x2464 | $19 |
-| [WaveShare IMX219-77IR](https://www.waveshare.com/IMX219-77IR-Camera.htm) | x | 77 |  3280x2464 | $21 |
-| [WaveShare IMX219-120](https://www.waveshare.com/IMX219-120-Camera.htm) |   | 120 |  3280x2464 | $20 |
-| [WaveShare IMX219-160](https://www.waveshare.com/IMX219-160-Camera.htm) |   | 160 |  3280x2464 | $23 |
-| [WaveShare IMX219-160IR](https://www.waveshare.com/IMX219-160IR-Camera.htm) | x | 160 |  3280x2464 | $25 |
-| [WaveShare IMX219-200](https://www.waveshare.com/IMX219-200-Camera.htm) |   | 200 |  3280x2464 | $27 |
+| Model                                                                                                                                                                                                  | Infared | FOV  | Resolution  | Cost |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------:|:----:|:-----------:|:----:|
+| [Raspberry Pi Camera V2](https://www.amazon.com/Raspberry-Pi-Camera-Module-Megapixel/dp/B01ER2SKFS/ref=sr_1_3?keywords=raspberry+pi+v2+camera&qid=1554831689&s=electronics&sr=1-3)                     |         | 62.2 |  3280x2464  | $25  |
+| [Raspberry Pi Camera V2 (NOIR)](https://www.amazon.com/RPi-Camera-V2-Official-Raspberry/dp/B07P7GBJTK/ref=sr_1_1_sspa?keywords=raspberry+pi+v2+camera&qid=1554831658&s=electronics&sr=1-1-spons&psc=1) |    x    | 62.2 |  3280x2464  | $31  |
+| [Arducam IMX219 CS lens mount](https://www.robotshop.com/en/arducam-8mp-sony-imx219-camera-module-cs-lens-2718-raspberry-pi.html?gclid=EAIaIQobChMIzMKg38bD4QIVrR6tBh3UoAdjEAYYCSABEgLg-_D_BwE)        |         |      |  3280x2464  | $65  |
+| [Arducam IMX219 M12 lens mount](https://www.robotshop.com/en/arducam-8mp-sony-imx219-camera-module-m12-lens-ls40136-raspberry-pi.html)                                                                 |         |      |  3280x2464  | $60  |
+| [LI-IMX219-MIPI-FF-NANO](https://leopardimaging.com/product/li-imx219-mipi-ff-nano/)                                                                                                                   |         |      |  3280x2464  | $29  |
+| [WaveShare IMX219-77](https://www.waveshare.com/IMX219-77-Camera.htm)                                                                                                                                  |         |  77  |  3280x2464  | $19  |
+| [WaveShare IMX219-77IR](https://www.waveshare.com/IMX219-77IR-Camera.htm)                                                                                                                              |    x    |  77  |  3280x2464  | $21  |
+| [WaveShare IMX219-120](https://www.waveshare.com/IMX219-120-Camera.htm)                                                                                                                                |         | 120  |  3280x2464  | $20  |
+| [WaveShare IMX219-160](https://www.waveshare.com/IMX219-160-Camera.htm)                                                                                                                                |         | 160  |  3280x2464  | $23  |
+| [WaveShare IMX219-160IR](https://www.waveshare.com/IMX219-160IR-Camera.htm)                                                                                                                            |    x    | 160  |  3280x2464  | $25  |
+| [WaveShare IMX219-200](https://www.waveshare.com/IMX219-200-Camera.htm)                                                                                                                                |         | 200  |  3280x2464  | $27  |
+| [WaveShare IMX219-83](https://www.waveshare.com/IMX219-83-Stereo-Camera.htm)                                                                                                                           |    x    |  83  | 3280 × 2464 | $46  |
 
 ### USB Cameras
 
 These cameras work with the [``USBCamera``](jetcam/usb_camera.py) class.  Try them out by following the example [notebook](notebooks/usb_camera/usb_camera.ipynb).
 
-| Model | Infared | FOV | Resolution | Cost | 
-|:-------|:-----:|:---:|:---:|:----:|
-| [Logitech C270](https://www.amazon.com/Logitech-Widescreen-designed-Calling-Recording/dp/B004FHO5Y6) |  | 60 | 1280x720 | $18 | 
+| Model                                                                                                | Infared | FOV | Resolution | Cost |
+|:-----------------------------------------------------------------------------------------------------|:-------:|:---:|:----------:|:----:|
+| [Logitech C270](https://www.amazon.com/Logitech-Widescreen-designed-Calling-Recording/dp/B004FHO5Y6) |         | 60  |  1280x720  | $18  |
 
 ## See also
 
