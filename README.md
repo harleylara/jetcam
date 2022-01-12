@@ -104,7 +104,7 @@ These cameras work with the [``CSICamera``](jetcam/csi_camera.py) class.  Try th
 | [WaveShare IMX219-160](https://www.waveshare.com/IMX219-160-Camera.htm)                                                                                                                                |         | 160  |  3280x2464  | $23  |
 | [WaveShare IMX219-160IR](https://www.waveshare.com/IMX219-160IR-Camera.htm)                                                                                                                            |    x    | 160  |  3280x2464  | $25  |
 | [WaveShare IMX219-200](https://www.waveshare.com/IMX219-200-Camera.htm)                                                                                                                                |         | 200  |  3280x2464  | $27  |
-| [WaveShare IMX219-83](https://www.waveshare.com/IMX219-83-Stereo-Camera.htm)                                                                                                                           |    x    |  83  | 3280 × 2464 | $46  |
+| [WaveShare IMX219-83](https://www.waveshare.com/IMX219-83-Stereo-Camera.htm)                                                                                                                           |        |  83  | 3280 × 2464 | $46  |
 
 ### USB Cameras
 
