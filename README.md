@@ -27,7 +27,7 @@ Below we show some usage examples.  You can find more in the [notebooks](noteboo
 
 ### Create CSI camera
 
-Call ``CSICamera`` to use a compatible CSI camera.  ``capture_width``, ``capture_height``, and ``capture_fps`` will control the capture shape and rate that images are aquired.  ``width`` and ``height`` control the final output shape of the image as returned by the ``read`` function. ``flip_method`` can rotate/flip the image. This is useful when the mounting of the camera is of a different orientation than the default.
+Call ``CSICamera`` to use a compatible CSI camera.  ``capture_width``, ``capture_height``, and ``capture_fps`` will control the capture shape and rate that images are aquired.  ``width`` and ``height`` control the final output shape of the image as returned by the ``read`` function. ``flip_method`` can rotate/flip the image. This is useful when the mounting of the camera is in a different orientation than the default.
 
 ```
 flip_method:    (0): none             - Identity (no rotation)
